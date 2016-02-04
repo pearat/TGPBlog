@@ -53,8 +53,8 @@
                                         { bckgImg = @Url.Content("~/img/blog/grunge-pink-blue.jpg"); }
                                         else
                                         { bckgImg = @Url.Content(Model.MediaURL); }
-                                        <img src=@bckgImg alt="Graphic for Post"
-                                             class="img-responsive full-post-img" />
+                                    <img src=@bckgImg alt="Graphic for Post"
+                                         class="img-responsive full-post-img" />
                                     }
                                 </li>
                                 <li>
@@ -135,15 +135,89 @@
             @Html.Partial("~/Views/Shared/_Comments.cshtml", Model);
             <p> *************** End of Render ************** </p>
 
+            @foreach (var com in Model.Comments)
+            {
+                <!--
+                <div class="media comments">
+                    <div class="media-left" style="display:inline-block">
+                        <p>@com.Created.DateTime.ToShortDateString()</p>
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading">Commentator: @com.Author.DisplayName</h6>
+                </div>
+                if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                    <form action="@Url.Action("EditComment","Posts")" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="slug" value="@Slug" />
+                        <input type="hidden" name="id" value="@com.id" />
+                        <input type="hidden" name="PostId" value="@Model.id" />
 
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="text" value="@com.Body" name="Body"/>
+                                @Html.ValidationMessageFor(modelComment=>com.Body, "", new{ @class="text-danger"})
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" value="Submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    @Html.ActionLink(" / Delete", "DeleteComment", new { id = com.id })
+                }
+                else
+                {
+                    <p>@com.Body</p>
+                }
+                    -->
+            }
+            <!--
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h5 class="margin-b-30">Leave a Comment</h5>
+                <form action="@Url.Action("CreateComment","Posts")" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="PostId" value="@Model.id" />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="display:inline-block">Comment by </label>
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <textarea class="form-control" rows="1" name="alias"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="display:inline-block">Comment</label>
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <textarea class="form-control" rows="3" name="Body"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-dark btn-lg">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <br /><hr /><br />
+                <h5 class="margin-b-30" style="text-align:center">
+                    To a Comment, please
+                    @Html.ActionLink("Log in", "Login", "Account", new { returnUrl = thisPage }, null)
+                </h5>
+            }
+            <div class="space-80"></div>
+            -->
         </div>
 
         <div class="col-md-1">
             <!-- side bar = 2 columns in template-->
 
         </div><!--sidebar col-->
-    </div><!--/.row -->
-</div>
+    </div>
 </div>
 
 

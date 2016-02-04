@@ -8,10 +8,28 @@
 }
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
+
+
+@*vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*@  
+
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <form class="search-widget" action="@Url.Action("Index","Posts")">
+            <input type="text" class="form-control" placeholder="Search..." 
+                   value="@ViewBag.Query"  name="query">
+            <button type="button" typeof="submit"> <i class="fa fa-search"></i></button>
+        </form>
+    </li>
+    <li><a href="#" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">Contact</a></li>
+</ul>
+                
+
+@*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*@
+
 <div style="height: 10px"></div>
 <div class="container text-center">
     <a href="#">
-        <img src="~/img/timbo-logo.png"/>
+        <img src="~/img/timbo-logo.png" />
     </a>
 </div>
 <div style="height: 10px"></div>
@@ -19,13 +37,23 @@
 
 <div class="flexslider main-flex-slider">
     <ul class="slides">
-
-        @for (var j = 0; j < 3; j++)
+        @{ 
+            int n = 0;
+            if(Model!=null || Model.Count()!=0)
+            {
+                n = Math.Min(3, Model.Count());
+            }
+        }
+        @for (var j = 0; j < n; j++)
         {
-            <li style="background-image: url(@Url.Content(Model.ElementAt(j).MediaURL));
+            var bckgImg = "";
+            if (Model.ElementAt(j).MediaURL == null)
+            { bckgImg = @Url.Content("~/img/blog/trend-color-neon.jpg"); }
+            else
+            { bckgImg = @Url.Content(Model.ElementAt(j).MediaURL); }
+            <li style="background-image: url(@bckgImg);
                     background-position: center; max-width:1100px; max-height:480px;">
-                    
-                           <div class="slider-inner">
+                <div class="slider-inner">
                     <div class="slider-text">
                         <div class="row">
                             @*<div class="col-md-6 col-md-offset-3">*@
@@ -68,7 +96,7 @@
     <div class="blog-item col-sm-4">
         <div class="post grid-post">
             <div class="post-img">
-                                                
+
                 <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(k).Slug })">
                     <img src="@Url.Content(Model.ElementAt(k).MediaURL)" alt="Graphic for Post" class="img-responsive"
                          style="max-width:90%; max-height:250px;
@@ -89,7 +117,7 @@
     </div><!--col end-->
     if (i % 3 == 0)
     {
-        @:   </div> <!-- end row -->
+        @: </div> <!-- end row -->
     }
     i++;
 
@@ -97,7 +125,7 @@
 
 <hr />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, query = ViewBag.Query }))
 
 
 

@@ -32,6 +32,7 @@ namespace TGPBlog.Controllers
 
             int pageNumber = (page ?? 1);
             int pageSize = 9;
+            
             return View(db.Posts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
 
             //return View(db.Posts.OrderByDescending(p=>p.Created).Take(12).ToList());
@@ -39,13 +40,19 @@ namespace TGPBlog.Controllers
 
 
         // GET: Posts
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page,string query)
         {
-
             int pageNumber = (page ?? 1);
             int pageSize = 9;
-            return View(db.Posts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
-
+            ViewBag.Query = query;
+            var qp = db.Posts.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                qp = qp.Where(p => p.Title.Contains(query) || p.Body.Contains(query) ||
+                p.Category.Contains(query)|| p.Comments.Any(c=>c.Body.Contains(query) || 
+                c.Author.DisplayName.Contains(query)));
+            }
+            return View(qp.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
         }
 
 
