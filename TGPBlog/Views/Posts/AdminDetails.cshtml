@@ -1,0 +1,99 @@
+﻿@model TGPBlog.Models.Post
+
+@{
+    ViewBag.Title = "AdminDetails";
+}
+
+<h2>AdminDetails</h2>
+
+
+<div style="height: 50px"></div>
+
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+
+            @Html.Raw(Model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaURL)
+        </dt>
+
+        <dd>
+            try {
+            @Url.Content(Model.MediaURL)
+            }
+            catch(Exception ex)
+            {
+            //log the error
+            return View("YourErrorView");
+            }
+
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+
+
+    @Html.ActionLink("Back to List", "Admin")
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center margin-b-30">
+                    <span>&copy; Copyright 2016 by TGP with template from Design_mylife</span>
+                </div>
+            </div>
+        </div>
+    </footer><!--footer end-->
+    <!--js plugins-->
+    </body>
+    </html>
+
+</p>
+<script src="~/js/jquery.dotdotdot.min.js"></script>
+

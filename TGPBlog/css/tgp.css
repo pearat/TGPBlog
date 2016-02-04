@@ -1,0 +1,97 @@
+body {
+    background-color: #F1F4F1;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+
+.modal-body {
+
+    background-color: #D4E1D4;
+}
+
+
+.exercise {
+    padding: 0px 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    /*float: left;*/
+}
+
+
+.results {
+    /*background-color: #D4E1D4;
+        color: #3c2a35;*/
+    border-radius: 10px;
+
+    /*color: #FFFFFF; 
+    background-color: #507c50;*/
+    color: #4b3542; background-color: #ADCAAD;
+    font-weight: bold;
+    margin: 5px 0px 0px 0px;
+    padding: 5px 10px;
+    /*text-indent: 20px;*/
+    visibility: hidden;
+    width: 100%;
+}
+
+.warn {
+    color: crimson;
+    text-indent: 0px;
+}
+
+#fizzBuzzResult {
+    /* font-family: Consolas, monaco, monospace; */
+    /*visibility:hidden;*/
+    font-family: monaco, monospace;
+    text-indent: 0px;
+    width: 100%;    
+    text-align: justify;
+    font-size:x-small;
+    overflow:auto;
+}
+
+#palindromeResult {
+    text-indent: 0px;
+    width: 100%;
+}
+
+.lead{
+    font-weight:900;
+    font-size: 2em;
+}
+
+.jobDetail {
+background-color: aqua;
+color: black;
+    text-align: justify;
+    font-size:xx-large;
+    font-weight:900;
+}
+
+.jobLocation {
+    text-align: center;
+}
+.resultsBtn {
+    margin:7px 0px 0px;
+}
+
+#fizzBuzzResult {
+    margin:20px 0px 0px;
+}
+
+#factorialResult {
+    margin-left: inherit; 
+    /*text-align:center;*/
+}
+
+#numFactorial {
+    outline-style:none;
+    /*box-shadow:none;
+    border-color:transparent;*/
+}
+
+
+/*input {
+  -webkit-user-modify: read-write-plaintext-only;
+}*/
+

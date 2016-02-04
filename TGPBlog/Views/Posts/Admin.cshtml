@@ -1,0 +1,101 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<TGPBlog.Models.Post>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<h2>Index</h2>
+
+@*<table class="table" style="max-height:2em; overflow:hidden;">*@
+<table style="width: 100%;">
+    <colgroup width="7%" span="3" style="vertical-align:top;"></colgroup>
+    <colgroup width="21%" span="1" style="padding: 0px 5px;"></colgroup>
+    <colgroup width="34%" span="1" style="text-overflow:clip; word-wrap: break-word; padding: 0px 5px;"></colgroup>
+    <colgroup width="10%" span="1" style="padding: 0px 5px;"></colgroup>
+    <colgroup width="14%" span="1"></colgroup>
+
+    <tr>
+        <th>
+            Created
+        </th>
+        <th>
+            Updated
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Title
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>*@
+        <th>
+            Body
+        </th>
+        <th>
+            MediaURL
+        </th>
+        <th>
+            Actions
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td style="text-align:center">
+                @Html.Raw(item.Created.DateTime.ToShortDateString())
+
+            </td>
+            <td style="text-align:center">
+                @if (item.Updated != null)
+                {
+                    @Html.Raw(item.Updated.Value.DateTime.ToShortDateString())
+                }
+            </td>
+
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+
+            <td style="text-align:left">
+                <a href="@Url.Action("AdminDetails", "Posts", new { slug = item.Slug })">@item.Title</a>
+            </td>
+
+
+            <td height="20px" width="100px">
+                <div id="long-column">
+                    <p>@Html.Raw(item.Body)</p>
+                </div>
+            </td>
+
+            <td style="text-overflow:ellipsis; overflow:hidden; width:100%; max-width:50px; white-space: pre-wrap; word-wrap:break-word;">
+                @Html.Raw(item.MediaURL)
+            </td>
+
+            @*<td style="display:inline">*@
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                    <span>/</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Admin", new { page }))
+

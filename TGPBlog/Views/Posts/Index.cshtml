@@ -1,0 +1,108 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<TGPBlog.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div style="height: 10px"></div>
+<div class="container text-center">
+    <a href="#">
+        <img src="~/fonts/images/timbo-logo.png"/>
+    </a>
+</div>
+<div style="height: 10px"></div>
+<!--flex slider-->
+
+<div class="flexslider main-flex-slider">
+    <ul class="slides">
+
+        @for (var j = 0; j < 3; j++)
+        {
+            <li style="background-image: url(@Model.ElementAt(j).MediaURL);
+                    background-position: center; max-width:1100px; max-height:480px;">
+                <div class="slider-inner">
+                    <div class="slider-text">
+                        <div class="row">
+                            @*<div class="col-md-6 col-md-offset-3">*@
+                            <div class="slider-text-inner" style="opacity:0.85">
+                                <div class="post-header text-center" style="opacity:1">
+                                    <span class="tag"><a href="#"><i class="fa fa-tag"></i>@Model.ElementAt(j).Category</a></span>
+                                    <h3 class="post-title">
+                                        <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(j).Slug })">@Model.ElementAt(j).Title</a>
+                                    </h3>
+                                    @*<img src="@Model.ElementAt(j).MediaURL" alt="Graphic for Post"
+                                        class="img-responsive" style="max-width:1100px;
+                                        max-height:480px;">*@
+
+                                    <span class="date">@Html.Raw(@Model.ElementAt(j).Created.DateTime.ToLongDateString())</span>
+                                </div><!--post header-->
+                                <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(j).Slug })" class="btn btn-lg btn-skin">Read more</a>
+                                @*</div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li><!--li-->
+            <!--flex slider end-->
+        }
+
+    </ul> <!-- end slides -->
+</div>  <!-- end slides -->
+
+<hr />
+
+@{var i = 1; }
+
+@for (var k = 3; k < Model.Count(); k++)
+{
+    if (i % 3 == 1)
+    {
+        @:<div class="row blog-grid">
+    }
+    <div class="blog-item col-sm-4">
+        <div class="post grid-post">
+            <div class="post-img">
+                <a href="#">
+                    <img src="@Model.ElementAt(k).MediaURL" alt="Graphic for Post" class="img-responsive"
+                         style="max-width:90%; max-height:250px;
+                                display: block; margin-left: auto; margin-right: auto">
+                </a>
+            </div><!--post img-->
+            <div class="post-header text-center">
+                <span class="tag"><a href="#"><i class="fa fa-tag"></i> @Model.ElementAt(k).Category</a></span>
+                <h3><a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(k).Slug })">@Model.ElementAt(k).Title</a></h3>
+                <span class="date">@Html.Raw(@Model.ElementAt(k).Created.DateTime.ToLongDateString())</span>
+            </div><!--post header-->
+            <div class="post-entry preview_wrapper" style="max-width:90%; line-height: 1.2em; max-height: 6em;">
+                <p>
+                    @Html.Raw(@Model.ElementAt(k).Body)
+                </p>
+            </div><!--post entry-->
+        </div><!--post with grid end-->
+    </div><!--col end-->
+    if (i % 3 == 0)
+    {
+        @:   </div> <!-- end row -->
+    }
+    i++;
+
+}
+
+<hr />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+
+
+
+
+
+
+
+
+

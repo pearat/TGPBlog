@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="~/bower_components/flexslider/flexslider.css" rel="stylesheet" />
+    <link href="~/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet" />
+    <!--revolution css-->
+    <link href="~/revolution/css/navigation.css" rel="stylesheet">
+    <link href="~/revolution/css/layers.css" rel="stylesheet">
+    <link href="~/revolution/css/settings.css" rel="stylesheet">
+    <!--custom css file-->
+    <link href="~/css/style.css" rel="stylesheet">
+    <style>
+        .navbar-default .navbar-brand:hover,
+        .navbar-default .navbar-brand:focus {
+            color: #ADCAAD;
+        }
+
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus {
+            color: #ADCAAD;
+            background-color: transparent;
+        }
+
+        .blog {
+            font-weight: 900;
+            padding-top: 14px;
+        }
+
+            .blog:hover {
+                color: #ADCAAD;
+            }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: 0.85">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="http://tpeara.azurewebsites.net/" class="navbar-brand"
+                   style="padding:13px 15px 5px 0px;font-size:x-large; font-weight:900;">TGP</a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @Html.ActionLink("Posts", "Index", "Posts", new { area = "" }, new { @class = "navbar-brand blog" })
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin", "Admin", "Posts")</li>
+                        <li>@Html.ActionLink("Create", "Create", "Posts")</li>
+                        <li>@Html.ActionLink("Users", "Index", "Manage", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div style="height:70px"></div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center margin-b-30">
+                        <span>&copy; Copyright @DateTime.Now.Year by TGP</span>
+                    </div>
+                </div>
+            </div>
+        </footer><!--footer end-->
+
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <!--js plugins-->
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/js/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/jquery.easing.1.3.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/bootstrap-hover-dropdown.min.js"></script>
+    <script src="~/bower_components/flexslider/jquery.flexslider-min.js"></script>
+    <script src="~/Scripts/js/custom.js" type="text/javascript"></script>
+    <script src="~/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+    <!--contact form script-->
+    @*<script src="~/Scripts/js/contact_me.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/js/jqBootstrapValidation.js" type="text/javascript"></script>
+    ---
+    @Scripts.Render("~/bundles/revolution")
+
+    <script src="~/Scripts/js/jquery.dotdotdot.min.js"></script>
+    <script src="~/Scripts/js/invokeDotDotDot.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>*@

@@ -1,0 +1,322 @@
+﻿@model TGPBlog.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .full_post_img {
+        max-width: 1140px;
+        max-height: 480px;
+    }
+</style>
+
+<!--main navigation end-->
+<div style="height: 20px"></div>
+
+
+<div class="container text-center">
+    <a href="#">
+        <img src="~/images/timbo-logo.png" />
+    </a>
+</div>
+
+<hr>
+<div class="space-40"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-10 full-width-post">
+            <div class="post margin-b-40">
+                <div class="post-header text-center">
+                    <span class="tag"><a href="#"><i class="fa fa-tag"></i> @Html.Raw(Model.Category)</a></span>
+                    <!--<h3 class="post-title"><a href="#">Lorem ipsum cogarts elit down</a></h3>-->
+                    @*<h3 class="post-title"><a href="#">Lorem ipsum cogarts elit down</a></h3>*@
+                    <h3 class="post-title">
+                        @Html.DisplayFor(model => model.Title)
+                    </h3>
+                    <span class="date">
+                        @*8 Nov. 2015 @Html.DisplayFor(model => model.Created)*@
+                        @Html.Raw(Model.Created.DateTime.ToLongDateString())
+                    </span>
+                </div><!--post header-->
+                <div class="post-img">
+                    <a href="#">
+                        <div class="flexslider thumb-slider">
+                            <ul class="slides">
+                                <li>
+                                    <img src="@Model.MediaURL" alt="Graphic for Post"
+                                         class="img-responsive full-post-img" />
+                                </li>
+                                @*
+                                    <li>
+                                        <img src="~/images/MilosRaonic.jpg" alt="Raonic"
+                                             class="img-responsive full-post-img" />
+                                    </li>*@
+                                <li>
+                                    <img src="~/images/richard-gasquet-topspin-backhand-grip.jpg" alt="Gasquet"
+                                         class="img-responsive full-post-img" />
+                                </li>
+                                <li>
+                                    <img src="~/images/roger-federer-768x480.jpg" alt="Federer"
+                                         class="img-responsive full-post-img" />
+                                </li>
+
+                                @*
+                                    <li><img src="~/images/tennisBlue.jpg" alt="" class="img-responsive" /></li>
+                                    <li><img src="~/images/tForever.jpg" alt="" class="img-responsive" /></li>*@
+                            </ul>
+                        </div>
+                    </a>
+                </div><!--post img-->
+                <div class="post-entry">
+
+                    @Html.Raw(Model.Body);
+                    @*<blockquote>
+                            <p>
+                                Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili. Se si decide di utilizzare un passaggio del Lorem Ipsum, è bene essere certi che non contenga nulla di imbarazzante.
+                            </p>
+                        </blockquote>*@
+                </div><!--post entry-->
+
+                <div class="post-meta">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span class="comments"><a href="#"><i class="fa fa-comments"></i> 4 Comments</a></span>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            @*<ul class="socials list-inline clearfix">
+                                    <li><span>Share:</span></li>
+                                    <li>
+                                        <a href="#" class="social-icon-sm si-gray si-gray-round si-facebook">
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="social-icon-sm si-gray si-gray-round si-twitter">
+                                            <i class="fa fa-twitter"></i>
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="social-icon-sm si-gray si-gray-round si-g-plus">
+                                            <i class="fa fa-google-plus"></i>
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="social-icon-sm si-gray si-gray-round si-pinterest">
+                                            <i class="fa fa-pinterest"></i>
+                                            <i class="fa fa-pinterest"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="social-icon-sm si-gray si-gray-round si-instagram">
+                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>*@
+                        </div>
+                    </div>
+                </div><!--post meta-->
+            </div><!--post end-->
+            <!--about-author-->
+            <div class="media about-author">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-circle" src="~/images/TimboCartoon.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Timbo</h4>
+                    <p>
+                        Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili.
+                        <ul class="socials list-inline clearfix">
+
+                            <li>
+                                <a href="#" class="social-icon-sm si-border-round si-gray-round si-facebook">
+                                    <i class="fa fa-facebook"></i>
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="social-icon-sm si-border-round si-gray-round si-g-plus">
+                                    <i class="fa fa-google-plus"></i>
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                </div>
+            </div>
+            <!--about author end-->
+
+            <div class="space-30"></div>
+            <hr>
+
+            <!--comments-->
+
+            <h5 class="margin-b-30">@Model.Comments.Count() Comments</h5>
+            @foreach (var com in Model.Comments)
+            {
+                <div class="media comments">
+                    <div class="media-left" style="display:inline-block">
+                        <p>@com.Created.DateTime.ToShortDateString()</p>
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading">Commentator: @com.Author.DisplayName</h6>
+                </div>
+                if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                    <form action="@Url.Action("EditComment","Posts")" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@com.id" />
+                        <input type="hidden" name="PostId" value="@Model.id" />
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="text" value="@com.Body" name="Body"/>
+                                @Html.ValidationMessage(com.Body), "", new{ class="text-danger"})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" value="Submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    @Html.ActionLink(" / Delete", "DeleteComment", new { id = com.id })
+                }
+                else
+                {
+                    <p>@com.Body</p>
+                }
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h5 class="margin-b-30">Leave a Comment</h5>
+                <form action="@Url.Action("CreateComment","Posts")" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="PostId" value="@Model.id" />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="display:inline-block">Comment by </label>
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <textarea class="form-control" rows="1" name="alias"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="display:inline-block">Comment</label>
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <textarea class="form-control" rows="3" name="Body"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-dark btn-lg">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            }
+            else
+            {
+                string thisPage = Url.Action("Details", "Posts", new { slug = Model.Slug });
+                <h5 class="margin-b-30">
+                    To a Comment, please
+                    @Html.ActionLink("Log in", "Login", "Account", new { returnUrl = thisPage }, null)
+                </h5>
+            }
+            <div class="space-80"></div>
+
+        </div>
+
+        <div class="col-md-1">
+            <!-- side bar = 2 columns in template-->
+
+        </div><!--sidebar col-->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!--
+<h2>Details</h2>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaURL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+-->
