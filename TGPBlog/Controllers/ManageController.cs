@@ -11,6 +11,7 @@ using TGPBlog.Models;
 namespace TGPBlog.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

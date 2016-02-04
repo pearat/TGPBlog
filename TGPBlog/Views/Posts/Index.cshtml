@@ -11,7 +11,7 @@
 <div style="height: 10px"></div>
 <div class="container text-center">
     <a href="#">
-        <img src="~/fonts/images/timbo-logo.png"/>
+        <img src="~/img/timbo-logo.png"/>
     </a>
 </div>
 <div style="height: 10px"></div>
@@ -22,9 +22,10 @@
 
         @for (var j = 0; j < 3; j++)
         {
-            <li style="background-image: url(@Model.ElementAt(j).MediaURL);
+            <li style="background-image: url(@Url.Content(Model.ElementAt(j).MediaURL));
                     background-position: center; max-width:1100px; max-height:480px;">
-                <div class="slider-inner">
+                    
+                           <div class="slider-inner">
                     <div class="slider-text">
                         <div class="row">
                             @*<div class="col-md-6 col-md-offset-3">*@
@@ -34,7 +35,7 @@
                                     <h3 class="post-title">
                                         <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(j).Slug })">@Model.ElementAt(j).Title</a>
                                     </h3>
-                                    @*<img src="@Model.ElementAt(j).MediaURL" alt="Graphic for Post"
+                                    @*<img src="@Url.Content(Model.ElementAt(j).MediaURL)" alt="Graphic for Post"
                                         class="img-responsive" style="max-width:1100px;
                                         max-height:480px;">*@
 
@@ -63,11 +64,13 @@
     {
         @:<div class="row blog-grid">
     }
+
     <div class="blog-item col-sm-4">
         <div class="post grid-post">
             <div class="post-img">
-                <a href="#">
-                    <img src="@Model.ElementAt(k).MediaURL" alt="Graphic for Post" class="img-responsive"
+                                                
+                <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(k).Slug })">
+                    <img src="@Url.Content(Model.ElementAt(k).MediaURL)" alt="Graphic for Post" class="img-responsive"
                          style="max-width:90%; max-height:250px;
                                 display: block; margin-left: auto; margin-right: auto">
                 </a>

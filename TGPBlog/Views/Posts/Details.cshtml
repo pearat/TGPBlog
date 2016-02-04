@@ -17,7 +17,7 @@
 
 <div class="container text-center">
     <a href="#">
-        <img src="~/images/timbo-logo.png" />
+        <img src="~/img/timbo-logo.png" />
     </a>
 </div>
 
@@ -47,7 +47,7 @@
                         <div class="flexslider thumb-slider">
                             <ul class="slides">
                                 <li>
-                                    <img src="@Model.MediaURL" alt="Graphic for Post"
+                                    <img src="@Url.Content(Model.MediaURL)" alt="Graphic for Post"
                                          class="img-responsive full-post-img" />
                                 </li>
                                 @*
@@ -56,11 +56,11 @@
                                              class="img-responsive full-post-img" />
                                     </li>*@
                                 <li>
-                                    <img src="~/images/richard-gasquet-topspin-backhand-grip.jpg" alt="Gasquet"
+                                    <img src="~/img/richard-gasquet-topspin-backhand-grip.jpg" alt="Gasquet"
                                          class="img-responsive full-post-img" />
                                 </li>
                                 <li>
-                                    <img src="~/images/roger-federer-768x480.jpg" alt="Federer"
+                                    <img src="~/img/roger-federer-768x480.jpg" alt="Federer"
                                          class="img-responsive full-post-img" />
                                 </li>
 
@@ -128,7 +128,7 @@
             <div class="media about-author">
                 <div class="media-left">
                     <a href="#">
-                        <img class="media-object img-circle" src="~/images/TimboCartoon.jpg" alt="...">
+                        <img class="media-object img-circle" src="~/img/TimboCartoon.jpg" alt="...">
                     </a>
                 </div>
                 <div class="media-body">
@@ -161,8 +161,13 @@
             <hr>
 
             <!--comments-->
-
             <h5 class="margin-b-30">@Model.Comments.Count() Comments</h5>
+
+            @{ 
+                string Slug = Model.Slug;
+                string thisPage = Url.Action("Details", "Posts", new { slug = Slug }); 
+            }
+
             @foreach (var com in Model.Comments)
             {
                 <div class="media comments">
@@ -177,12 +182,15 @@
                 {
                     <form action="@Url.Action("EditComment","Posts")" method="post">
                         @Html.AntiForgeryToken()
+                        <input type="hidden" name="slug" value="@Slug" />
                         <input type="hidden" name="id" value="@com.id" />
                         <input type="hidden" name="PostId" value="@Model.id" />
+
                         <div class="form-group">
                             <div class="col-md-10">
                                 <input type="text" value="@com.Body" name="Body"/>
-                                @Html.ValidationMessage(com.Body), "", new{ class="text-danger"})
+                                @Html.ValidationMessageFor(modelComment=>com.Body, "", new{ @class="text-danger"})
+                                
                             </div>
                         </div>
                         <div class="form-group">
@@ -226,7 +234,7 @@
             }
             else
             {
-                string thisPage = Url.Action("Details", "Posts", new { slug = Model.Slug });
+                
                 <h5 class="margin-b-30">
                     To a Comment, please
                     @Html.ActionLink("Log in", "Login", "Account", new { returnUrl = thisPage }, null)

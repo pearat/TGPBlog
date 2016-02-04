@@ -5,11 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TGPBlog.Models;
+using TGPBlog.Models.CodeFirst;
 
 namespace TGPBlog.Controllers
 {
@@ -106,13 +108,18 @@ namespace TGPBlog.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         //public ActionResult Create([Bind(Include = "id,Title,Body,MediaURL,Category")] Post post, HttpPostedFileBase image)
-        public ActionResult Create([Bind(Include = "id,Title,Body,MediaURL,Category")] Post post)
+        public ActionResult Create([Bind(Include = "id,Title,Body,MediaURL,Category")] Post post, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
                 // restrict the valid file formats for images
 
-
+                if(ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/img/blog/"), fileName));
+                    post.MediaURL = "~/img/blog/" + fileName;
+                }
                 post.Created = System.DateTimeOffset.Now;
                 //..... set slug here ....
                 var Slug = StringUtilities.URLFriendly(post.Title);
@@ -157,7 +164,7 @@ namespace TGPBlog.Controllers
         // more AdminDetails see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Created,Updated,Title,Slug,Body,MediaURL,Category")] Post post)
+        public ActionResult Edit([Bind(Include = "id,Created,Updated,Title,Slug,Body,MediaURL,Category")] Post post, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -183,7 +190,12 @@ namespace TGPBlog.Controllers
                 //db.Entry(post).Property(p=>p.Updated).IsModified = true;
                 //db.Entry(post).Property(p=>p.MediaURL).IsModified = true;
                 //db.SaveChanges();
-
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/img/blog/"), fileName));
+                    post.MediaURL = "~/img/blog/" + fileName;
+                }
                 db.Entry(post).State = EntityState.Modified;  // modifies entire row
                 db.SaveChanges();
 
@@ -212,7 +224,7 @@ namespace TGPBlog.Controllers
         // POST: Posts/EditComment
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditComment([Bind(Include = "id,PostId,Body")] Comment comment)
+        public ActionResult EditComment([Bind(Include = "id,PostId,Body")] Comment comment, String slug)
         {
             if (ModelState.IsValid)
             {
@@ -225,10 +237,9 @@ namespace TGPBlog.Controllers
                 db.SaveChanges();
                 //db.Entry(comment).State = EntityState.Modified;  
                 //db.SaveChanges();
-
-                return RedirectToAction("Details");
             }
-            return View(comment);
+            
+            return RedirectToAction("Details", new { Slug = slug });
         }
 
 

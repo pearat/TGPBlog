@@ -77,6 +77,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Owin.Security.Providers, Version=1.25.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.1.26\lib\net45\Owin.Security.Providers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -404,40 +408,40 @@
     <Content Include="css\YTPlayer.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\images\AustraliaTourism.jpg" />
-    <Content Include="fonts\images\bg-1.jpg" />
-    <Content Include="fonts\images\bg-2.jpg" />
-    <Content Include="fonts\images\bg-3.jpg" />
-    <Content Include="fonts\images\bg-4.jpg" />
-    <Content Include="fonts\images\CAP.jpg" />
-    <Content Include="fonts\images\conwayTennisUK.jpg" />
-    <Content Include="fonts\images\FrenchOpen.jpg" />
-    <Content Include="fonts\images\img-1.jpg" />
-    <Content Include="fonts\images\img-10.jpg" />
-    <Content Include="fonts\images\img-11.jpg" />
-    <Content Include="fonts\images\img-12.jpg" />
-    <Content Include="fonts\images\img-2.jpg" />
-    <Content Include="fonts\images\img-3.jpg" />
-    <Content Include="fonts\images\img-4.jpg" />
-    <Content Include="fonts\images\img-5.jpg" />
-    <Content Include="fonts\images\img-6.jpg" />
-    <Content Include="fonts\images\img-7.jpg" />
-    <Content Include="fonts\images\img-8.jpg" />
-    <Content Include="fonts\images\img-9.jpg" />
-    <Content Include="fonts\images\logo.png" />
-    <Content Include="fonts\images\me-2.jpg" />
-    <Content Include="fonts\images\me.jpg" />
-    <Content Include="fonts\images\MilosRaonic.jpg" />
-    <Content Include="fonts\images\QatarOpen.jpg" />
-    <Content Include="fonts\images\richard-gasquet-topspin-backhand-grip.jpg" />
-    <Content Include="fonts\images\roger-federer-12787-2560x1600.jpg" />
-    <Content Include="fonts\images\roger-federer-1440x900jpg.jpg" />
-    <Content Include="fonts\images\roger-federer-768x480.jpg" />
-    <Content Include="fonts\images\tennisBlue.jpg" />
-    <Content Include="fonts\images\tForever.jpg" />
-    <Content Include="fonts\images\timbo-logo.png" />
-    <Content Include="fonts\images\TimboCartoon.jpg" />
-    <Content Include="fonts\images\tlogo.png" />
+    <Content Include="img\AustraliaTourism.jpg" />
+    <Content Include="img\bg-1.jpg" />
+    <Content Include="img\bg-2.jpg" />
+    <Content Include="img\bg-3.jpg" />
+    <Content Include="img\bg-4.jpg" />
+    <Content Include="img\CAP.jpg" />
+    <Content Include="img\conwayTennisUK.jpg" />
+    <Content Include="img\FrenchOpen.jpg" />
+    <Content Include="img\img-1.jpg" />
+    <Content Include="img\img-10.jpg" />
+    <Content Include="img\img-11.jpg" />
+    <Content Include="img\img-12.jpg" />
+    <Content Include="img\img-2.jpg" />
+    <Content Include="img\img-3.jpg" />
+    <Content Include="img\img-4.jpg" />
+    <Content Include="img\img-5.jpg" />
+    <Content Include="img\img-6.jpg" />
+    <Content Include="img\img-7.jpg" />
+    <Content Include="img\img-8.jpg" />
+    <Content Include="img\img-9.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\me-2.jpg" />
+    <Content Include="img\me.jpg" />
+    <Content Include="img\MilosRaonic.jpg" />
+    <Content Include="img\QatarOpen.jpg" />
+    <Content Include="img\richard-gasquet-topspin-backhand-grip.jpg" />
+    <Content Include="img\roger-federer-12787-2560x1600.jpg" />
+    <Content Include="img\roger-federer-1440x900jpg.jpg" />
+    <Content Include="img\roger-federer-768x480.jpg" />
+    <Content Include="img\tennisBlue.jpg" />
+    <Content Include="img\tForever.jpg" />
+    <Content Include="img\timbo-logo.png" />
+    <Content Include="img\TimboCartoon.jpg" />
+    <Content Include="img\tlogo.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="revolution\assets\coloredbg.png" />
@@ -655,12 +659,12 @@
     <Content Include="bower_components\wow\LICENSE-MIT" />
     <Content Include="bower_components\wow\package.json" />
     <Content Include="bower_components\wow\README.md" />
-    <Content Include="private.config" />
     <Content Include="css\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="css\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="css\style.css.map" />
+    <Content Include="private.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -896,6 +900,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\blog\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
