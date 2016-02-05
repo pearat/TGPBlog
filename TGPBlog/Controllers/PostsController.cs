@@ -304,15 +304,15 @@ namespace TGPBlog.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateComment([Bind(Include = "PostId,Body")] Comment comment, string alias)
+        public ActionResult CreateComment([Bind(Include = "PostId,Body")] Comment comment) //, string alias)
         {
-            Console.WriteLine("Inside CreateComment - PostId {0} Body {1} alias {2}", comment.PostId, comment.Body, alias);
+            Console.WriteLine("Inside CreateComment - PostId {0} Body {1}", comment.PostId, comment.Body); //, alias);
             var slug = db.Posts.Find(comment.PostId).Slug;
             if (ModelState.IsValid)
             {
                 comment.AuthorId = User.Identity.GetUserId();
                 var user = db.Users.Find(comment.AuthorId);
-                user.DisplayName = alias;
+                // user.DisplayName = alias;
                 comment.Created = System.DateTimeOffset.Now;
 
                 db.Comments.Add(comment);

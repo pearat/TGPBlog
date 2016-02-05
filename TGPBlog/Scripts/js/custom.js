@@ -1,6 +1,3 @@
-
-
-
 /*=========================*/
 /*====main navigation hover dropdown====*/
 /*==========================*/
@@ -45,6 +42,9 @@ $(document).ready(function () {
 
 
 
+
+
+
 // jQuery(document).ready(function () {
 
 //$('.blog-grid').masonry({
@@ -54,3 +54,80 @@ $(document).ready(function () {
 //});
 
 // });
+/*
+$(document).ready(function () {
+
+    $("#dialog").dialog({
+        modal: true,
+        bgiframe: true,
+        width: 500,
+        height: 200,
+        autoOpen: false
+    });
+
+
+    $(".confirmLink").click(function (e) {
+
+        e.preventDefault();
+        var theHREF = $(this).attr("href");
+
+        $("#dialog").dialog('option', 'buttons', {
+            "Confirm": function () {
+                window.location.href = theHREF;
+            },
+            "Cancel": function () {
+                $(this).dialog("close");
+            }
+        });
+
+        $("#dialog").dialog("open");
+
+    });
+
+});
+*/
+
+$(document).ready(function () {
+    $("#dialog").dialog({
+        autoOpen: false,
+        modal: true
+    });
+});
+
+$(".confirmLink").click(function (e) {
+    e.preventDefault();
+    var targetUrl = $(this).attr("href");
+
+    $("#dialog").dialog({
+        buttons: {
+            "Confirm": function () {
+                window.location.href = targetUrl;
+            },
+            "Cancel": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    $("#dialog").dialog("open");
+});
+
+$(document).ready(function () {
+
+    $('#delCommentModal').on('shown.bs.modal', function () {
+        $(this).find('input:first').focus();
+    });
+    $('#numFactorial').keyup(function (event) {
+        if (event.keyCode == '13') {
+            $('#factorialBtn').click();
+        }
+    });
+    $('#factorialBtn').click(function () {
+        var numFact = $(numFactorial).val();
+        numFact = factorial(numFact);
+        $('#factorialResult').html("<p>n! = " + addCommas(numFact) + "<\p>");
+        $('#factorialResult').css('visibility', 'visible');
+    });
+
+});
+

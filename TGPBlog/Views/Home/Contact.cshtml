@@ -1,17 +1,73 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div>
+    <img class="media-object img-circle" src="~/img/TimboCartoon.jpg" alt="Timbo Cartoon">
+</div>
+<br />
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<h4 style="font-family:'MV Boli','Bradley Hand ITC','Lucida Handwriting','Segoe Script',Arial, Helvetica, sans-serif">
+    Feel free to contact me with any questions or comments, <br /><br />
+    thanks, Tim
+</h4>
+
+<hr />
+
+<div class="space-60"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="margin-b-30">Leave a reply</h5>
+            <form id="contact-form" actiont="@Url.Action("Contact","Home")"
+                  method="post" novalidate
+                  class="form-horizontal comment-form">
+                <div class="form-group">
+                    <label for="name1" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input id="contact-name" name="Name" type="text"
+                               class="form-control requiredField">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email1" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email1" name="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <textarea class="form-control" rows="3" id="comment" name="Subject"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button name="submit" type="submit" id="submit" data-error-message="Error!"
+                                data-sending-message="Sending..."
+                                data-ok-message="Message" value="true"
+                                class="btn btn-dark btn-lg">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                <input type="hidden" name="submitted" id="submitted" value="true" />
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h5 class="margin-b-30">Other ways to get in touch</h5>
+            <address>
+                18 Forest Road<br />
+                Asheville, NC 28803-2908<br />
+                <abbr title="Phone">Phone:</abbr>
+                941-920-3139
+            </address>
+
+            <address>
+                <strong>eMail:</strong>   <a href="mailto:tpeara@gmail.com">tpeara@gmail.com</a><br />
+            </address>
+        </div>
+    </div>
+
+</div>
+<div class="space-80"></div>
