@@ -278,6 +278,26 @@ namespace TGPBlog.Controllers
         }
 
 
+        public ActionResult DeletePostComment(int? id, String slug)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment com = db.Comments.Find(id);
+            if (com == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Comments.Remove(com);
+            db.SaveChanges();
+            
+            return RedirectToAction("Details", new { Slug = slug });
+        }
+
+
         // ************************************************************************* //
 
         // POST: Posts/CreateComment

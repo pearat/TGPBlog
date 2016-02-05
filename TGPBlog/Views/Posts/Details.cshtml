@@ -71,7 +71,7 @@
                 </div><!--post img-->
                 <div class="post-entry">
 
-                    @Html.Raw(Model.Body);
+                    @Model.Body
 
                 </div><!--post entry-->
 
@@ -124,8 +124,6 @@
             <hr>
 
             <!--comments-->
-            <h5 class="margin-b-30">@Model.Comments.Count() Comments</h5>
-
             @{
                 string Slug = Model.Slug;
                 string thisPage = Url.Action("Details", "Posts", new { slug = Slug });
