@@ -278,7 +278,24 @@ namespace TGPBlog.Controllers
         }
 
 
-        public ActionResult DeletePostComment(int? id, String slug)
+        // GET: Posts/DeletePostComment/5
+        //public ActionResult DeletePostComment(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Comment comment = db.Comments.Find(id);
+        //    if (comment == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(comment);
+        //}
+
+        // POST: Posts/DeletePostComment
+        //public ActionResult DeletePostComment(int? id, string slug)
+            public ActionResult DeletePostComment([Bind(Include = "id,Slug")] int? id, String slug)
         {
 
             if (id == null)
@@ -290,7 +307,7 @@ namespace TGPBlog.Controllers
             {
                 return HttpNotFound();
             }
-
+            //var slug = "silly-post";
             db.Comments.Remove(com);
             db.SaveChanges();
             
@@ -357,5 +374,14 @@ namespace TGPBlog.Controllers
             }
             base.Dispose(disposing);
         }
-    }
+
+
+        public ActionResult GetView()
+        {
+            return PartialView("_Comments");
+        }
+
+
+
+}
 }

@@ -13,6 +13,31 @@
     form input[type=text].form-control {
         width: 600px;
     }
+    
+    .xtra-btn, .xtra-btn::after, .xtra-btn:active, .xtra-btn:visited, .xtra-btn:after {
+        color: #C69F73;
+    }
+
+    .xtra-btn:hover, .xtra-btn:active {
+        color: #fff;
+    }
+
+    .xtra-danger-btn {
+        background-color:#fff;
+        color:#d9534f;
+        border: 1px solid #d9534f;
+    }
+
+    .xtra-danger-btn:hover, .xtra-danger-btn:visited, .xtra-danger-btn:active, .xtra-danger-btn:after   {
+        background-color:#d9534f;
+        color: #fff;
+    }
+
+    .modal-dialog {
+    max-width: 250px;
+}
+
+    
 </style>
 
 <!--main navigation end-->
@@ -69,31 +94,116 @@
                 </div><!--post img-->
                 <div class="post-entry">
 
-                    @Model.Body
+                    @Html.Raw(Model.Body)
 
                 </div><!--post entry-->
 
-                <div class="post-meta">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span class="comments"><a href="#"><i class="fa fa-comments"></i> @Model.Comments.Count() Comments</a></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-
-                        </div>
-                    </div>
-                </div><!--post meta-->
             </div><!--post end-->
+            <!-- vvvv comments vvvv -->
+
+            @{
+                string Slug = Model.Slug;
+                string thisPage = Url.Action("Details", "Posts", new { slug = Slug });
+            }
+
+            <div class="post-meta">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="comments"><a href="#"><i class="fa fa-comments"></i> @Model.Comments.Count() Comments</a></span>
+                    </div>
+                    <div class="col-sm-6 text-right">
+
+                    </div>
+                </div>
+            </div><!--post meta-->
+
 
             <div class="space-30"></div>
             <hr>
+            <div class="row">
+                @foreach (var com in Model.Comments)
+                {
+                    <div class="media comments">
+                        <div class="media-left" style="display:inline-block">
+                            <p>@com.Created.DateTime.ToLongDateString()</p>
+                            <h6>Commentator: @com.Author.DisplayName</h6>
+                        </div>
+                        <div class="media-body">
+                            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                            {
+                                <form action="@Url.Action("EditComment","Posts")" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="slug" value="@Slug" />
+                                    <input type="hidden" name="id" value="@com.id" />
+                                    <input type="hidden" name="PostId" value="@Model.id" />
 
-            <!--comments-->
+                                    <div class="form-group">
+                                        <textarea style="max-width:unset; width:100%;" name="Body" rows="2">@com.Body</textarea>
+                                        @*<input type="text" class="" style="width: 600px;" rows="2" value="@com.Body" name="Body">
+                                    @Html.ValidationMessageFor(modelComment => com.Body, "", new { @class = "text-danger" })*@
+                                    </div>
 
 
-            @Html.Partial("~/Views/Shared/_Comments.cshtml", Model)
+                                    <div class="form-group" style="display:inline-block">
+                                        <button type="submit" value="Submit" class="btn btn-lg btn-skin xtra-btn">Submit</button>
+                                        <!--    @Html.ActionLink("Delete", "DeletePostComment", new { id = com.id, slug = @Slug },
+                                new { @class = "btn btn-lg btn-skin xtra-btn", onclick = "return confirm('Are you sure you want to delete this comment?');" }) -->
+                                        <!--    @Html.ActionLink("Delete", "DeletePostComment", new { id = com.id, slug = @Slug },
+                                new { @class = "btn btn-lg btn-skin xtra-btn", onclick = "return confirm('Are you sure you want to delete this comment?');" }) -->
+
+                                        <button data-id="@com.id"
+                                                type="submit" value="Submit"
+                                                class="btn btn-lg btn-skin xtra-danger-btn"
+                                                data-toggle="modal" data-target="#delCommentModal">
+                                            Delete
+                                        </button>
+
+                                    </div>
+                                </form>
+
+                            }
+                            else
+                            {
+                                <p>@com.Body</p>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h5 class="margin-b-30">Leave a Comment</h5>
+                <form action="@Url.Action("CreateComment","Posts")" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" name="PostId" value="@Model.id" />
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <label class="col-sm-2 control-label" style="display:inline-block">Comment</label>
+                            <textarea class="form-control" rows="3" name="Body" style="max-width:unset;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-lg btn-skin xtra-btn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <br /><hr /><br />
+                <h5 class="margin-b-30" style="text-align:center">
+                    To a Comment, please
+                    @Html.ActionLink("Log in", "Login", "Account", new { returnUrl = thisPage }, null)
+                </h5>
+            }
+
+            <div class="space-80"></div>
 
 
+            <!-- ^^^^ comments ^^^^ -->
 
         </div>
 
@@ -106,5 +216,39 @@
 
 
 
+  <!-- vvvvvvvvvvvvvvv Start of Modal vvvvvvvvvvvvvvv -->
 
+<div class="modal fade" id="delCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="align-content:center">
+            <div class="modal-header" style="background-color:#C69F73" >
+                <button type="button" class="close" 
+                        data-dismiss="modal" 
+                        aria-hidden="true">×</button>
+                <h4 class="modal-title" style="text-align:center; color:#fff"
+                    id="myModalLabel"> Confirm Delete</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <p id="factorialResult" class="results" style="text-align:center">Are you sure?</p>
+                </div>
+            </div>
+
+            <div class="modal-footer"style="align-content:center">
+
+                <button type="button" data-dismiss="modal" class="btn btn-skin xtra-btn">Dismiss</button>
+                <span data-dismiss="modal">
+                    <button type="button" id="deleteConfirmed" value="true"
+                            class="btn btn-danger xtra-danger-btn"
+                            data-warning="modal">
+                        Delete
+                    </button>
+                </span>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ^^^^ Modal end ^^^^ -->
 

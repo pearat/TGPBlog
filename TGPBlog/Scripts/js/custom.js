@@ -113,21 +113,73 @@ $(".confirmLink").click(function (e) {
 });
 
 $(document).ready(function () {
-
-    $('#delCommentModal').on('shown.bs.modal', function () {
-        $(this).find('input:first').focus();
+    var commentId = 0;
+    $('#delCommentModal').on('shown.bs.modal', function (e) {
+        var j = $(e.relatedTarget).data('id');
+        console.log(' commentId j: '+j);
+        commentId = j;
     });
-    $('#numFactorial').keyup(function (event) {
-        if (event.keyCode == '13') {
-            $('#factorialBtn').click();
+
+    $('#deleteConfirmed').click(function (e) {
+
+        var urlString = '../../Posts/DeletePostComment/' + commentId;
+        console.log('In $(#deleteConfirmed) urlString: ' + urlString);
+
+        $.ajax({
+            type: "POST",
+            url: urlString,
+            data: { id: commentId },
+            cache: false,
+            success: function (result) {
+                console.log(result.name);
+                success(result); 
+            },
+            error: function (e) {
+                console.log("error" + e);
+                success(e);
+            }
+        });
+
+        //$('#divPartialView').load('@Url.Action("Details", "Posts", )')
+        //$.ajax({
+        //    url: '@Url.Action("GetPartialDiv", "Home")',
+        //    data: { id: $(this).val() /* add other additional parameters */ },
+        //    cache: false,
+        //    type: "POST",
+        //    dataType: "html",
+        //    success: function (data, textStatus, XMLHttpRequest) {
+        //        SetData(data);
+        //    }
+        //});
+
+        function success(result) {
+            $("#divPartialView").html(result);
+            // $('#divPartialView').load("@Url.Action()");
+
         }
     });
-    $('#factorialBtn').click(function () {
-        var numFact = $(numFactorial).val();
-        numFact = factorial(numFact);
-        $('#factorialResult').html("<p>n! = " + addCommas(numFact) + "<\p>");
-        $('#factorialResult').css('visibility', 'visible');
-    });
-
+    $('#delCommentModal').on('hidden.bs.modal', function () {
+        window.location.reload(true);
+    })
 });
+
+
+// e.preventDefault();
+
+// console.log('Inside deleteConfirmed, commentId: ' + commentId);
+
+
+//var targetUrl = $(this).attr("href");
+//console.log('targetUrl: ' + targetUrl);
+//var urlString = '@Url.Action("Delete","DeletePostComment", "Posts", { id:'+commentId+ '})';
+
+//$.get(urlString);
+
+//var myData = {};
+//myData["id"] = commentId;
+
+////alert('commentId: ' + commentId);
+
+
+////@Html.ActionLink("Delete","DeletePostComment", new { id = com.id, slug = @Slug },
 

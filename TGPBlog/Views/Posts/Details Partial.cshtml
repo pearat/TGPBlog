@@ -1,0 +1,107 @@
+﻿@model TGPBlog.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .full_post_img {
+        max-width: 1140px;
+        max-height: 480px;
+    }
+
+    form input[type=text].form-control {
+        width: 600px;
+    }
+</style>
+
+<!--main navigation end-->
+<div style="height: 20px"></div>
+
+<div class="container text-center">
+    <img src="~/img/timbo-logo.png" />
+</div>
+
+<hr>
+<div class="space-40"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-10 full-width-post">
+            <div class="post margin-b-40">
+                <div class="post-header text-center">
+                    <span class="tag"><a href="#"><i class="fa fa-tag"></i> @Model.Category</a></span>
+                    <h3 class="post-title">
+                        @Html.DisplayFor(model => model.Title)
+                    </h3>
+                    <span class="date">
+                        @Model.Created.DateTime.ToLongDateString()
+                    </span>
+                </div><!--post header-->
+                <div class="post-img">
+                    <a href="#">
+                        <div class="flexslider thumb-slider">
+                            <ul class="slides">
+                                <li>
+                                    @{
+                                        var bckgImg = "";
+                                        if (Model.MediaURL == null)
+                                        { bckgImg = @Url.Content("~/img/blog/grunge-pink-blue.jpg"); }
+                                        else
+                                        { bckgImg = @Url.Content(Model.MediaURL); }
+                                        <img src=@bckgImg alt="Graphic for Post"
+                                             class="img-responsive full-post-img" />
+                                    }
+                                </li>
+                                <li>
+                                    <img src="~/img/richard-gasquet-topspin-backhand-grip.jpg" alt="Gasquet"
+                                         class="img-responsive full-post-img" />
+                                </li>
+                                <li>
+                                    <img src="~/img/roger-federer-768x480.jpg" alt="Federer"
+                                         class="img-responsive full-post-img" />
+                                </li>
+                            </ul>
+                        </div>
+                    </a>
+                </div><!--post img-->
+                <div class="post-entry">
+
+                    @Model.Body
+
+                </div><!--post entry-->
+
+            </div><!--post end-->
+            <!--comments-->
+
+            <a href='javascript:getView();'>Get Partial View</a>
+            <script type="text/javascript">
+                function getView() {
+                    $('#divResult').load("@Url.Action("GetView" , "Posts" )");
+                }
+            </script>
+            <div id='divResult'>
+                @*@Html.Partial("~/Views/Shared/_Comments.cshtml", Model)*@
+            </div>
+            
+
+            @*<div id="divPartialView">
+                @Html.Partial("~/Views/Shared/_Comments.cshtml", Model)
+            </div>*@
+
+
+        </div>
+
+        <div class="col-md-1">
+            <!-- side bar = 2 columns in template-->
+
+        </div><!--sidebar col-->
+    </div><!--/.row -->
+</div>
+
+
+
+
+
