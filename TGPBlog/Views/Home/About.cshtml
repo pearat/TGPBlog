@@ -1,42 +1,45 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-@*<h2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>*@
+
 
 <!-- .flexslider-attachments  main-flex-slider -->
 
 
-<div class="container about-pg-2">
+<div class="container about-pg-2" >
     <div class="row">
         <h2 class="t-title-office office2" style="text-align:center;"><span>Welcome to Timbo's Blog</span></h2>
         <br />
         <hr />
-        <div class="col-md-6">
+        <div class="col-sm-5 col-lg-offset-1">
+            <section class="slider" >
+                @*<div id="slider" class="flexslider .flexslider-attachments" style="background-color: #F1F4F1">*@
+                    <div id="slider" class="flexslider main-flex-slider" style="background-color: #F1F4F1">
+                        <ul class="slides">
+                            <li><img src="~/img/about/IzendaWebLogos.png" alt="" /></li>
+                            <li><img src="~/img/about/AspCsSQL.png" /></li>
+                            <li><img src="~/img/about/JQ-SQLS-DesignMyLife.png" /></li>
+                        </ul>
+                    </div>
+</section>
+        </div>
+        <div class="col-sm-offset-1 col-sm-5">
             <h3>This website is built using:</h3>
             <ul class="myFeatures">
                 <li>HTML5 / CSS3 / JavaScript</li>
-                <li>jQuery / SQL Server / Design My Life template</li>
+                <li>ASP.NET / C# / SQL Server</li>
+                <li>jQuery / Bootstrap / Design My Life template</li>
             </ul>
             <h3>Features include:</h3>
             <ul class="myFeatures">
-                <li>MVC4</li>
-                <li>Custom Filters</li>
-                <li>Animated Elements</li>
+                <li>MVC4 / Razor Helpers </li>
+                <li>One-to-Many linked Databases</li>
+                <li>Third-Party Logins</li>
+                <li>Modals / Custom Annimation</li>
             </ul>
         </div>
 
-        <div class="col-md-6">
-            <section class="slider">
-                <div id="slider" class="flexslider main-flex-slider">
-                    <ul class="slides">
-                        <li><img src="~/img/about/IzendaWebLogos.png" alt="" /></li>
-                        <li><img src="~/img/about/JQ-SQLS-DesignMyLife.png" alt=""/></li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-        
+
     </div>
 
 

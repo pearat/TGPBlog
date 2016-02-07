@@ -152,11 +152,11 @@ $(document).ready(function () {
         //    }
         //});
 
-        function success(result) {
-            $("#divPartialView").html(result);
-            // $('#divPartialView').load("@Url.Action()");
+        //function success(result) {
+        //    $("#divPartialView").html(result);
+        //    // $('#divPartialView').load("@Url.Action()");
 
-        }
+        //}
     });
     $('#delCommentModal').on('hidden.bs.modal', function () {
         window.location.reload(true);

@@ -1,13 +1,12 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-
 <div>
     <img class="media-object img-circle" src="~/img/TimboCartoon.jpg" alt="Timbo Cartoon">
 </div>
 <br />
 
-<h4 style="font-family:'MV Boli','Bradley Hand ITC','Lucida Handwriting','Segoe Script',Arial, Helvetica, sans-serif">
+<h4 class="myScript">
     Feel free to contact me with any questions or comments, <br /><br />
     thanks, Tim
 </h4>
@@ -40,17 +39,17 @@
                         <textarea class="form-control" rows="3" id="comment" name="Subject"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group x">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button name="submit" type="submit" id="submit" data-error-message="Error!"
                                 data-sending-message="Sending..."
                                 data-ok-message="Message" value="true"
-                                class="btn btn-dark btn-lg">
+                                class="btn btn-dark btn-lg xtra-btn">
                             Submit
                         </button>
                     </div>
                 </div>
-                <input type="hidden" name="submitted" id="submitted" value="true" />
+                <input  type="hidden" name="submitted" id="submitted" value="true" />
             </form>
         </div>
 

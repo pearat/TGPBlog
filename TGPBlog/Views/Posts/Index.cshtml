@@ -1,12 +1,13 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 
+
 @model IPagedList<TGPBlog.Models.Post>
 
 @{
     ViewBag.Title = "Index";
 }
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -33,10 +34,10 @@
             { bckgImg = @Url.Content("~/img/blog/trend-color-neon.jpg"); }
             else
             { bckgImg = @Url.Content(Model.ElementAt(j).MediaURL); }
-            <li style="background-image: url(@bckgImg);
+            <li style="background-image: url(@bckgImg); 
                     background-position: center; max-width:1100px; max-height:480px;">
                 <div class="slider-inner">
-                    <div class="slider-text">
+                    <div class="slider-text" >
                         <div class="row">
                             @*<div class="col-md-6 col-md-offset-3">*@
                             <div class="slider-text-inner" style="opacity:0.85">
@@ -74,13 +75,17 @@
     {
         @:<div class="row blog-grid">
     }
-
+    var bckgImg = "";
+    if (Model.ElementAt(k).MediaURL == null)
+        { bckgImg = @Url.Content("~/img/blog/trend-color-neon.jpg"); }
+    else
+        { bckgImg = @Url.Content(Model.ElementAt(k).MediaURL); }
     <div class="blog-item col-sm-4">
         <div class="post grid-post">
             <div class="post-img">
 
                 <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(k).Slug })">
-                    <img src="@Url.Content(Model.ElementAt(k).MediaURL)" alt="Graphic for Post" class="img-responsive"
+                    <img src="@bckgImg" alt="Graphic for Post" class="img-responsive"
                          style="max-width:90%; max-height:250px;
                                 display: block; margin-left: auto; margin-right: auto">
                 </a>
@@ -106,6 +111,8 @@
 }
 
 <hr />
+
+
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, query = ViewBag.Query }))
 

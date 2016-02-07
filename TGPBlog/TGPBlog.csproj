@@ -389,6 +389,7 @@
     <Content Include="Content\src\ycombinator.svg" />
     <Content Include="Content\src\yelp.svg" />
     <Content Include="Content\src\youtube.svg" />
+    <Content Include="Content\TGPBlog.css" />
     <Content Include="Content\templates\zocial.css" />
     <Content Include="Content\windows.svg" />
     <Content Include="Content\zocial.css" />
@@ -408,10 +409,22 @@
     <Content Include="css\YTPlayer.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\about\77-asp-net-mvc-4-codingcluster-745669.png" />
+    <Content Include="img\about\asp.net_.png" />
+    <Content Include="img\about\AspCsSQL.png" />
+    <Content Include="img\about\bootstrap-logo.png" />
+    <Content Include="img\about\csharp3.png" />
+    <Content Include="img\about\design_mylife %281%29.png" />
+    <Content Include="img\about\design_mylife.png" />
+    <Content Include="img\about\design_mylife210x210.png" />
     <Content Include="img\about\IzendaWebLogos.png" />
     <Content Include="img\about\JQ-SQLS-DesignMyLife.png" />
     <Content Include="img\about\jQueryNgUI.png" />
+    <Content Include="img\about\jQurery.gif" />
+    <Content Include="img\about\Mvc1.png" />
+    <Content Include="img\about\SQL-Server-Design-MyLife.png" />
     <Content Include="img\about\SQL-Server-Logo-transparent-300x247.png" />
+    <Content Include="img\about\StackOverflow.png" />
     <Content Include="img\AustraliaTourism.jpg" />
     <Content Include="img\blog\grunge-pink-blue.jpg" />
     <Content Include="img\blog\Trend-color-neon.jpg" />
@@ -657,6 +670,7 @@
     <Content Include="css\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="css\style.css.map" />
     <Content Include="private.config" />
+    <Content Include="img\about\SQL-Server-Design-MyLife.pdn" />
     <None Include="Properties\PublishProfiles\TGPBlog - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -863,7 +877,9 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -900,7 +916,7 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
     <Content Include="Views\Posts\Delete.cshtml" />
-    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Posts\DetailsFull.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
@@ -917,9 +933,9 @@
     <Content Include="Views\Shared\_CommentsDialogBox.cshtml" />
     <Content Include="Views\Shared\_Commentsbckup.cshtml" />
     <Content Include="Views\Shared\_CommentsPopUp .cshtml" />
+    <Content Include="Views\Shared\_CommentsFull.cshtml" />
+    <Content Include="Views\Posts\Details .cshtml" />
     <Content Include="Views\Shared\_Comments.cshtml" />
-    <Content Include="Views\Posts\Details Partial.cshtml" />
-    <Content Include="Views\Shared\_CommentsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

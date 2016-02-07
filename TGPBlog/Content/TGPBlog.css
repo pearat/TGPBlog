@@ -1,0 +1,73 @@
+﻿/*TGP Blog style sheet*/
+
+body {
+    background-color: #F1F4F1;
+}
+
+h5, h3 {
+    color: #699669;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #ADCAAD;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #ADCAAD;
+    background-color: transparent;
+}
+
+.flexslider .flex-direction-nav a {
+    background-color: #699669;
+    color: #699669;
+}
+
+.modal-header {
+    background-color: #ADCAAD;
+}
+
+.blog {
+    font-weight: 900;
+    padding-top: 14px;
+}
+
+    .blog:hover {
+        color: #ADCAAD;
+    }
+
+.xtra-btn {
+    color: #ADCAAD;
+    border: 1pt solid #ADCAAD;
+    background-color: #fff;
+}
+
+    .xtra-btn:active, .xtra-btn:after, .xtra-btn:hover, .xtra-btn:visited {
+        color: #fff;
+        background-color: #ADCAAD;
+    }
+
+.xtra-danger-btn {
+    background-color: #fff;
+    color: #93597A;
+    border: 1px solid #93597A;
+}
+
+    .xtra-danger-btn:active, .xtra-danger-btn:after, .xtra-danger-btn:hover, .xtra-danger-btn:visited {
+        background-color: #93597A;
+        color: #fff;
+    }
+
+.myScript {
+    font-family: 'MV Boli','Bradley Hand ITC','Lucida Handwriting','Segoe Script',Arial, Helvetica, sans-serif;
+    color: #599359;
+}
+
+
+
+
+.pagination > .active > a {
+    background-color: #4F7070;
+    border-color: #4F7070;
+}

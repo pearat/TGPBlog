@@ -75,22 +75,22 @@
 
             </div><!--post end-->
             <!--comments-->
-
-            <a href='javascript:getView();'>Get Partial View</a>
+            <!--
+            @*<a href='javascript:getView();'>Get Partial View</a>
             <script type="text/javascript">
                 function getView() {
                     $('#divResult').load("@Url.Action("GetView" , "Posts" )");
                 }
-            </script>
+            </script>*@
             <div id='divResult'>
                 @*@Html.Partial("~/Views/Shared/_Comments.cshtml", Model)*@
             </div>
             
 
-            @*<div id="divPartialView">
+            <div id="divPartialView">
                 @Html.Partial("~/Views/Shared/_Comments.cshtml", Model)
-            </div>*@
-
+            </div>
+            -->
 
         </div>
 
