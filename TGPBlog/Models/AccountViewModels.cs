@@ -5,6 +5,14 @@ namespace TGPBlog.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
+        // vvvvvvvvvvvv This may need to be removed from the code vvvvvvvvvvvvvv
+        [Required]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {1} characters long.", MinimumLength = 4)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Display Name")]
+        public string DisplayName { get; set; }
+        // ^^^^^^^^^^^^ This may need to be removed from the code ^^^^^^^^^^^^^
+
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }

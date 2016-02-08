@@ -19,15 +19,17 @@ namespace TGPBlog
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                        "~/Content/site.css",
+                        "~/Content/style.css",
                         "~/Content/zocial.css"
                         ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/revolution").Include(
                         "~/revolution/js/jquery.themepunch.revolution.min.js",
@@ -37,6 +39,8 @@ namespace TGPBlog
                         "~/revolution/js/extensions/revolution.extension.navigation.min.js",
                         "~/revolution/js/extensions/revolution.extension.parallax.min.js"
                         ));
+
+
 
         }
     }

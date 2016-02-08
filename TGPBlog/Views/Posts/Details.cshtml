@@ -69,7 +69,7 @@
                 </div><!--post img-->
                 <div class="post-entry">
 
-                    @Model.Body
+                    @Html.Raw(@Model.Body)
 
                 </div><!--post entry-->
 
@@ -85,12 +85,12 @@
             <div id='divResult'>
                 @*@Html.Partial("~/Views/Shared/_Comments.cshtml", Model)*@
             </div>
-            
+             -->           
 
             <div id="divPartialView">
                 @Html.Partial("~/Views/Shared/_Comments.cshtml", Model)
             </div>
-            -->
+
 
         </div>
 

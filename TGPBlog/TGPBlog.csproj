@@ -934,7 +934,7 @@
     <Content Include="Views\Shared\_Commentsbckup.cshtml" />
     <Content Include="Views\Shared\_CommentsPopUp .cshtml" />
     <Content Include="Views\Shared\_CommentsFull.cshtml" />
-    <Content Include="Views\Posts\Details .cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Shared\_Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>

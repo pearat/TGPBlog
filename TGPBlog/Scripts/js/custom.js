@@ -140,28 +140,32 @@ $(document).ready(function () {
             }
         });
 
-        //$('#divPartialView').load('@Url.Action("Details", "Posts", )')
-        //$.ajax({
-        //    url: '@Url.Action("GetPartialDiv", "Home")',
-        //    data: { id: $(this).val() /* add other additional parameters */ },
-        //    cache: false,
-        //    type: "POST",
-        //    dataType: "html",
-        //    success: function (data, textStatus, XMLHttpRequest) {
-        //        SetData(data);
-        //    }
-        //});
+    });
+    $('#delCommentModal').on('hidden.bs.modal', function () {
+        window.location.reload(true);
+    })
+});
+
 
         //function success(result) {
         //    $("#divPartialView").html(result);
         //    // $('#divPartialView').load("@Url.Action()");
 
         //}
-    });
-    $('#delCommentModal').on('hidden.bs.modal', function () {
-        window.location.reload(true);
-    })
-});
+
+
+//$('#divPartialView').load('@Url.Action("Details", "Posts", )')
+//$.ajax({
+//    url: '@Url.Action("GetPartialDiv", "Home")',
+//    data: { id: $(this).val() /* add other additional parameters */ },
+//    cache: false,
+//    type: "POST",
+//    dataType: "html",
+//    success: function (data, textStatus, XMLHttpRequest) {
+//        SetData(data);
+//    }
+//});
+
 
 
 // e.preventDefault();

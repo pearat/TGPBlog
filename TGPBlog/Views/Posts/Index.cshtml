@@ -13,16 +13,16 @@
 
 <div style="height: 10px"></div>
 <div class="container text-center">
-        <img src="~/img/timbo-logo.png" />
+    <img src="~/img/timbo-logo.png" />
 </div>
 <div style="height: 10px"></div>
 <!--flex slider-->
 
 <div class="flexslider main-flex-slider">
     <ul class="slides">
-        @{ 
+        @{
             int n = 0;
-            if(Model!=null || Model.Count()!=0)
+            if (Model != null || Model.Count() != 0)
             {
                 n = Math.Min(3, Model.Count());
             }
@@ -34,21 +34,34 @@
             { bckgImg = @Url.Content("~/img/blog/trend-color-neon.jpg"); }
             else
             { bckgImg = @Url.Content(Model.ElementAt(j).MediaURL); }
-            <li style="background-image: url(@bckgImg); 
+            <li style="background-image: url(@bckgImg);
                     background-position: center; max-width:1100px; max-height:480px;">
                 <div class="slider-inner">
-                    <div class="slider-text" >
+                    <div class="slider-text">
                         <div class="row">
                             @*<div class="col-md-6 col-md-offset-3">*@
                             <div class="slider-text-inner" style="opacity:0.85">
                                 <div class="post-header text-center" style="opacity:1">
-                                    <span class="tag"><a href="#"><i class="fa fa-tag"></i>@Model.ElementAt(j).Category</a></span>
+
+
+
+                                    <span class="tag"><i class="fa fa-tag"></i>@Model.ElementAt(j).Category</span>
+
+                                    @*<span class="tag"><a href="#"><i class="fa fa-tag"></i>@Model.ElementAt(j).Category</a></span>*@
+
+                                    @*<span class="tag">
+                                        @{ ViewBag.Query = Model.ElementAt(j).Category; }
+                                        <a href="@Url.Action("Index", "Posts",new { query= @ViewBag.Query})" 
+                                           value="@ViewBag.Query" name="query" >
+                                            <i class="fa fa-tag"></i>@Model.ElementAt(j).Category
+                                        </a>
+                                    </span>*@
+
+
                                     <h3 class="post-title">
                                         <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(j).Slug })">@Model.ElementAt(j).Title</a>
                                     </h3>
-                                    @*<img src="@Url.Content(Model.ElementAt(j).MediaURL)" alt="Graphic for Post"
-                                        class="img-responsive" style="max-width:1100px;
-                                        max-height:480px;">*@
+
 
                                     <span class="date">@Html.Raw(@Model.ElementAt(j).Created.DateTime.ToLongDateString())</span>
                                 </div><!--post header-->
@@ -75,11 +88,12 @@
     {
         @:<div class="row blog-grid">
     }
+
     var bckgImg = "";
     if (Model.ElementAt(k).MediaURL == null)
-        { bckgImg = @Url.Content("~/img/blog/trend-color-neon.jpg"); }
+    { bckgImg = @Url.Content("~/img/blog/trend-color-neon.jpg"); }
     else
-        { bckgImg = @Url.Content(Model.ElementAt(k).MediaURL); }
+    { bckgImg = @Url.Content(Model.ElementAt(k).MediaURL); }
     <div class="blog-item col-sm-4">
         <div class="post grid-post">
             <div class="post-img">
@@ -91,38 +105,40 @@
                 </a>
             </div><!--post img-->
             <div class="post-header text-center">
-                <span class="tag"><a href="#"><i class="fa fa-tag"></i> @Model.ElementAt(k).Category</a></span>
+                
+                
+                
+                @*<span class="tag"><a href="#"><i class="fa fa-tag"></i> @Model.ElementAt(k).Category</a></span>*@
+                <span class="tag"><i class="fa fa-tag"></i> @Model.ElementAt(k).Category</span>
+                @*<span class="tag">
+                    @{ ViewBag.Query = Model.ElementAt(k).Category; }
+                    <a href="@Url.Action("Index", "Posts",new { query= @ViewBag.Query})"
+                       value="@ViewBag.Query" name="query">
+                        <i class="fa fa-tag"></i>@Model.ElementAt(k).Category
+                    </a>
+                </span>*@
+
+
                 <h3><a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(k).Slug })">@Model.ElementAt(k).Title</a></h3>
                 <span class="date">@Html.Raw(@Model.ElementAt(k).Created.DateTime.ToLongDateString())</span>
-            </div><!--post header-->
+            </div>
             <div class="post-entry preview_wrapper" style="max-width:90%; line-height: 1.2em; max-height: 6em;">
                 <p>
                     @Html.Raw(@Model.ElementAt(k).Body)
                 </p>
-            </div><!--post entry-->
-        </div><!--post with grid end-->
-    </div><!--col end-->
-    if (i % 3 == 0)
+            </div>
+        </div>
+    </div>
+    if ((i % 3 == 0) || (k == Model.Count()-1))
     {
-        @: </div> <!-- end row -->
+        @:</div>
     }
     i++;
-
 }
+
 
 <hr />
 
 
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, query = ViewBag.Query }))
-
-
-
-
-
-
-
-
-
-
-

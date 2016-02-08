@@ -155,7 +155,7 @@ namespace TGPBlog.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DisplayName = model.DisplayName };
+                var user = new ApplicationUser { UserName = model.DisplayName, Email = model.Email, DisplayName = model.DisplayName };
 
 
                 if (db.Users.Any(u => u.DisplayName == model.DisplayName))
@@ -379,7 +379,7 @@ namespace TGPBlog.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.DisplayName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

@@ -9,30 +9,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <style>
-        .xtra-btn, .xtra-btn::after, .xtra-btn:active, .xtra-btn:visited {
-            color: #ADCAAD;
-        }
-
-            .xtra-btn:hover, .xtra-btn:active {
-                color: #fff;
-            }
-
-        .xtra-danger-btn:active, .xtra-danger-btn:visited {
-            /*color:#d9534f;*/
-        }
-
-        .xtra-danger-btn, .xtra-danger-btn:hover, .xtra-danger-btn:active {
-            color:#fff;
-            background-color:#d9534f;
-        }
-    </style>
 </head>
 <body>
 
 
     @{
         string Slug = Model.Slug;
+        var deleteThisComment = "";
         string thisPage = Url.Action("Details", "Posts", new { slug = Slug });
     }
 
@@ -63,34 +46,30 @@
                     {
                         <form action="@Url.Action("EditComment","Posts")" method="post">
                             @Html.AntiForgeryToken()
+                            deleteThisComment = com.id;
                             <input type="hidden" name="slug" value="@Slug" />
                             <input type="hidden" name="id" value="@com.id" />
                             <input type="hidden" name="PostId" value="@Model.id" />
 
                             <div class="form-group">
-                                <textarea style="max-width:unset; width:100%;" name="Body" rows="2">@com.Body</textarea>
+                                <textarea style="width:100%" name="Body" rows="2">@com.Body</textarea>
                                 @*<input type="text" class="" style="width: 600px;" rows="2" value="@com.Body" name="Body">
                                     @Html.ValidationMessageFor(modelComment => com.Body, "", new { @class = "text-danger" })*@
                             </div>
-                            
 
                             <div class="form-group" style="display:inline-block">
                                 <button type="submit" value="Submit" class="btn btn-lg btn-skin xtra-btn">Submit</button>
-                            <!--    @Html.ActionLink("Delete", "DeletePostComment", new { id = com.id, slug = @Slug }, 
-                            new { @class = "btn btn-lg btn-skin xtra-btn", onclick = "return confirm('Are you sure you want to delete this comment?');" }) -->
                                 <!--    @Html.ActionLink("Delete", "DeletePostComment", new { id = com.id, slug = @Slug },
-    new { @class = "btn btn-lg btn-skin xtra-btn", onclick = "return confirm('Are you sure you want to delete this comment?');" }) -->
+                                new { @class = "btn btn-lg btn-skin xtra-btn", onclick = "return confirm('Are you sure you want to delete this comment?');" }) -->
+                                <!--    @Html.ActionLink("Delete", "DeletePostComment", new { id = com.id, slug = @Slug },
+                                new { @class = "btn btn-lg btn-skin xtra-btn", onclick = "return confirm('Are you sure you want to delete this comment?');" }) -->
 
-                                    <button data-id="@com.id"
+                                <button data-id="@com.id"
                                         type="submit" value="Submit"
                                         class="btn btn-lg btn-skin xtra-btn"
-                                        data-toggle="modal" data-target="#delCommentModal"
-                                        >
+                                        data-toggle="modal" data-target="#delCommentModal">
                                     Delete
                                 </button>
-
-
-
                             </div>
                         </form>
 
@@ -114,7 +93,7 @@
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
                     <label class="col-sm-2 control-label" style="display:inline-block">Comment</label>
-                    <textarea class="form-control" rows="3" name="Body" style="max-width:unset;"></textarea>
+                    <textarea class="form-control" rows="3" name="Body"> </textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -135,40 +114,48 @@
 
     <div class="space-80"></div>
 
-    <!-- vvvvvvvvvvvvvvv Start of Modal vvvvvvvvvvvvvvv -->
-    <!-- factorialModal start -->
-    <div class="modal fade" id="delCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+    <!-- vvvvv Start of Modal vvvvv -->
+
+    <div class="modal fade" id="delCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm" style="max-width:300px;">
+            <div class="modal-content" style="align-content:center">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                    <button type="button" class="close"
+                            data-dismiss="modal" 
+                            aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" style="text-align:center; color:#fff"
+                        id="myModalLabel">
+                        Confirm Delete
+                    </h4>
                 </div>
 
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <p id="factorialResult" class="results">Are you sure you want to delete this Comment?</p>
-                        </div>
+                        <p id="factorialResult" class="results" style="text-align:center">Are you sure?</p>
                     </div>
                 </div>
 
-                <div class="modal-footer"  >
-
-                    <button type="button" data-dismiss="modal" class="btn btn-skin xtra-btn">Dismiss</button>
-                    <span data-dismiss="modal">
-                        <button type="button" id="deleteConfirmed" value="true"
-                                class="btn btn-danger xtra-danger-btn"
-                                data-warning="modal">
-                            Delete
-                        </button>
-                    </span>
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <div class="modal-footer" style="align-content:center">
+                    
+                        <button type="button" data-dismiss="modal" class="btn btn-skin xtra-btn">Dismiss</button>
+                        <span data-dismiss="modal">
+                            <button type="button" id="deleteConfirmed" value="true"
+                                    class="btn btn-danger xtra-danger-btn" data-warning="modal">
+                                    <!-- 
+                                        onclick="@Html.ActionLink("Delete", "DeletePostComment", 
+                                                new { id = @deleteThisComment, slug = @Slug })"> -->
+                                Delete
+                            </button>
+                        </span>
+                    
                 </div>
             </div>
         </div>
     </div>
-    <!-- factorialModal end -->
+    <!-- ^^^^^ Modal end ^^^^^ -->
 
 
 </body>
