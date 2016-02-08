@@ -112,19 +112,30 @@ $(".confirmLink").click(function (e) {
     $("#dialog").dialog("open");
 });
 
+
 $(document).ready(function () {
     var commentId = 0;
     $('#delCommentModal').on('shown.bs.modal', function (e) {
         var j = $(e.relatedTarget).data('id');
-        console.log(' commentId j: '+j);
+        console.log(' commentId j: ' + j);
         commentId = j;
     });
 
     $('#deleteConfirmed').click(function (e) {
 
-        var urlString = '../../Posts/DeletePostComment/' + commentId;
-        console.log('In $(#deleteConfirmed) urlString: ' + urlString);
+        $('#modal-id').val(commentId);
+        var testId = $('#modal-id').val();
+        
+        var token = $('input[name="__RequestVerificationToken"]').val();
+        console.log('toke: ' + token);
+        $.ajaxPrefilter(function (options, originalOptions) {
+            if (options.type.toUpperCase() == "POST") {
+                options.data = $.param($.extend(originalOptions.data, { __RequestVerificationToken: token }));
+            }
+        });
 
+        var urlString = '~/Posts/DeletePostComment/' + commentId;
+        console.log('In $(#deleteConfirmed) urlString: ' + urlString);
         $.ajax({
             type: "POST",
             url: urlString,
@@ -132,11 +143,9 @@ $(document).ready(function () {
             cache: false,
             success: function (result) {
                 console.log(result.name);
-                success(result); 
             },
             error: function (e) {
                 console.log("error" + e);
-                success(e);
             }
         });
 
@@ -147,11 +156,12 @@ $(document).ready(function () {
 });
 
 
-        //function success(result) {
-        //    $("#divPartialView").html(result);
-        //    // $('#divPartialView').load("@Url.Action()");
 
-        //}
+//function success(result) {
+//    $("#divPartialView").html(result);
+//    // $('#divPartialView').load("@Url.Action()");
+
+//}
 
 
 //$('#divPartialView').load('@Url.Action("Details", "Posts", )')

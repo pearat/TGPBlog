@@ -227,6 +227,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="blogger.png" />
     <Content Include="bower_components\flexslider\changelog.txt" />
     <Content Include="bower_components\flexslider\flexslider.css" />
     <Content Include="bower_components\flexslider\fonts\flexslider-icon.svg" />
@@ -407,7 +409,7 @@
     <Content Include="css\tgp.css" />
     <Content Include="css\yamm.css" />
     <Content Include="css\YTPlayer.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="faviconBlog1.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\about\77-asp-net-mvc-4-codingcluster-745669.png" />
     <Content Include="img\about\asp.net_.png" />
@@ -936,6 +938,7 @@
     <Content Include="Views\Shared\_CommentsFull.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Shared\_Comments.cshtml" />
+    <Content Include="Views\Shared\_CommentsAjax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
