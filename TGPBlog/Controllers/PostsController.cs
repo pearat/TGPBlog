@@ -295,7 +295,7 @@ namespace TGPBlog.Controllers
 
         // POST: Posts/DeletePostComment
         //public ActionResult DeletePostComment(int? id, string slug)
-        public ActionResult DeletePostComment([Bind(Include = "id,Slug")] int? id) /*, String slug)*/
+        public ActionResult DeletePostComment(int? id, string slug) /*, String slug)*/
         {
 
             if (id == null)
@@ -303,7 +303,7 @@ namespace TGPBlog.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Comment com = db.Comments.Find(id);
-            string slug = db.Posts.Find(com.PostId).Slug;
+            //slug = db.Posts.Find(com.PostId).Slug;
             if (com == null)
             {
                 return HttpNotFound();

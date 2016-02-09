@@ -113,47 +113,47 @@ $(".confirmLink").click(function (e) {
 });
 
 
-$(document).ready(function () {
-    var commentId = 0;
-    $('#delCommentModal').on('shown.bs.modal', function (e) {
-        var j = $(e.relatedTarget).data('id');
-        console.log(' commentId j: ' + j);
-        commentId = j;
-    });
+//$(document).ready(function () {
+//    var commentId = 0;
+//    $('#delCommentModal').on('shown.bs.modal', function (e) {
+//        var j = $(e.relatedTarget).data('id');
+//        console.log(' commentId j: ' + j);
+//        commentId = j;
+//    });
 
-    $('#deleteConfirmed').click(function (e) {
+//    $('#deleteConfirmed').click(function (e) {
 
-        $('#modal-id').val(commentId);
-        var testId = $('#modal-id').val();
+//        $('#modal-id').val(commentId);
+//        var testId = $('#modal-id').val();
         
-        var token = $('input[name="__RequestVerificationToken"]').val();
-        console.log('toke: ' + token);
-        $.ajaxPrefilter(function (options, originalOptions) {
-            if (options.type.toUpperCase() == "POST") {
-                options.data = $.param($.extend(originalOptions.data, { __RequestVerificationToken: token }));
-            }
-        });
+        //var token = $('input[name="__RequestVerificationToken"]').val();
+        //console.log('toke: ' + token);
+        //$.ajaxPrefilter(function (options, originalOptions) {
+        //    if (options.type.toUpperCase() == "POST") {
+        //        options.data = $.param($.extend(originalOptions.data, { __RequestVerificationToken: token }));
+        //    }
+        //});
 
-        var urlString = '~/Posts/DeletePostComment/' + commentId;
-        console.log('In $(#deleteConfirmed) urlString: ' + urlString);
-        $.ajax({
-            type: "POST",
-            url: urlString,
-            data: { id: commentId },
-            cache: false,
-            success: function (result) {
-                console.log(result.name);
-            },
-            error: function (e) {
-                console.log("error" + e);
-            }
-        });
+        //var urlString = '/Posts/DeletePostComment/' + commentId;
+        //console.log('In $(#deleteConfirmed) urlString: ' + urlString);
+        //$.ajax({
+        //    type: "POST",
+        //    url: urlString,
+        //    data: { id: commentId },
+        //    cache: false,
+        //    success: function (result) {
+        //        console.log(result.name);
+        //    },
+        //    error: function (e) {
+        //        console.log("error" + e);
+        //    }
+        //});
 
-    });
-    $('#delCommentModal').on('hidden.bs.modal', function () {
-        window.location.reload(true);
-    })
-});
+    //});
+//    $('#delCommentModal').on('hidden.bs.modal', function () {
+//        window.location.reload(true);
+//    })
+//});
 
 
 
