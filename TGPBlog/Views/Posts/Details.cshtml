@@ -106,8 +106,8 @@
         var commentId = 0;
         $('#delCommentModal').on('shown.bs.modal', function (e) {
             var j = $(e.relatedTarget).data('id');
-            //console.log(' commentId j: ' + j);
-            //commentId = j;
+            console.log(' commentId j: ' + j);
+            commentId = j;
             $('#modal-id').val(commentId);
         });
 

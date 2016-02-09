@@ -673,6 +673,7 @@
     <Content Include="css\style.css.map" />
     <Content Include="private.config" />
     <Content Include="img\about\SQL-Server-Design-MyLife.pdn" />
+    <Content Include="privateConnection.config" />
     <None Include="Properties\PublishProfiles\TGPBlog - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
