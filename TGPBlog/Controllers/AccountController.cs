@@ -154,10 +154,7 @@ namespace TGPBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var user = new ApplicationUser { UserName = model.DisplayName, Email = model.Email, DisplayName = model.DisplayName };
-
-
                 if (db.Users.Any(u => u.DisplayName == model.DisplayName))
                 {
                     ModelState.AddModelError("DisplayName", "This 'Display Name' is already taken.  Please choose another one.");

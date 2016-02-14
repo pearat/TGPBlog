@@ -32,7 +32,7 @@ namespace TGPBlog.Controllers
 
             int pageNumber = (page ?? 1);
             int pageSize = 9;
-            
+
             return View(db.Posts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
 
             //return View(db.Posts.OrderByDescending(p=>p.Created).Take(12).ToList());
@@ -40,18 +40,19 @@ namespace TGPBlog.Controllers
 
 
         // GET: Posts
-        public ActionResult Index(int? page,string query)
+        public ActionResult Index(int? page, string query)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 9;
-            ViewBag.Query = query;
+
             var qp = db.Posts.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(query))
+            if (!string.IsNullOrEmpty(query))
             {
                 qp = qp.Where(p => p.Title.Contains(query) || p.Body.Contains(query) ||
-                p.Category.Contains(query)|| p.Comments.Any(c=>c.Body.Contains(query) || 
-                c.Author.DisplayName.Contains(query)));
+                p.Category.Contains(query) || p.Comments.Any(c => c.Body.Contains(query) ||
+                 c.Author.DisplayName.Contains(query)));
             }
+            ViewBag.Query = query;
             return View(qp.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
         }
 
@@ -121,7 +122,7 @@ namespace TGPBlog.Controllers
             {
                 // restrict the valid file formats for images
 
-                if(ImageUploadValidator.IsWebFriendlyImage(image))
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
                 {
                     var fileName = Path.GetFileName(image.FileName);
                     image.SaveAs(Path.Combine(Server.MapPath("~/img/blog/"), fileName));
@@ -245,7 +246,7 @@ namespace TGPBlog.Controllers
                 //db.Entry(comment).State = EntityState.Modified;  
                 //db.SaveChanges();
             }
-            
+
             return RedirectToAction("Details", new { Slug = slug });
         }
 
@@ -308,11 +309,11 @@ namespace TGPBlog.Controllers
             {
                 return HttpNotFound();
             }
-             
+
             db.Comments.Remove(com);
             db.SaveChanges();
-            
-            return RedirectToAction("Details","Posts", new { Slug = slug });
+
+            return RedirectToAction("Details", "Posts", new { Slug = slug });
         }
 
 
@@ -384,5 +385,5 @@ namespace TGPBlog.Controllers
 
 
 
-}
+    }
 }

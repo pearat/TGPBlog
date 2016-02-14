@@ -7,10 +7,6 @@
 @{
     ViewBag.Title = "Index";
 }
-
-
-
-
 <div style="height: 10px"></div>
 <div class="container text-center">
     <img src="~/img/timbo-logo.png" />
@@ -43,20 +39,7 @@
                             <div class="slider-text-inner" style="opacity:0.85">
                                 <div class="post-header text-center" style="opacity:1">
 
-
-
                                     <span class="tag"><i class="fa fa-tag"></i>@Model.ElementAt(j).Category</span>
-
-                                    @*<span class="tag"><a href="#"><i class="fa fa-tag"></i>@Model.ElementAt(j).Category</a></span>*@
-
-                                    @*<span class="tag">
-                                        @{ ViewBag.Query = Model.ElementAt(j).Category; }
-                                        <a href="@Url.Action("Index", "Posts",new { query= @ViewBag.Query})" 
-                                           value="@ViewBag.Query" name="query" >
-                                            <i class="fa fa-tag"></i>@Model.ElementAt(j).Category
-                                        </a>
-                                    </span>*@
-
 
                                     <h3 class="post-title">
                                         <a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(j).Slug })">@Model.ElementAt(j).Title</a>
@@ -106,18 +89,7 @@
             </div><!--post img-->
             <div class="post-header text-center">
                 
-                
-                
-                @*<span class="tag"><a href="#"><i class="fa fa-tag"></i> @Model.ElementAt(k).Category</a></span>*@
                 <span class="tag"><i class="fa fa-tag"></i> @Model.ElementAt(k).Category</span>
-                @*<span class="tag">
-                    @{ ViewBag.Query = Model.ElementAt(k).Category; }
-                    <a href="@Url.Action("Index", "Posts",new { query= @ViewBag.Query})"
-                       value="@ViewBag.Query" name="query">
-                        <i class="fa fa-tag"></i>@Model.ElementAt(k).Category
-                    </a>
-                </span>*@
-
 
                 <h3><a href="@Url.Action("Details", "Posts", new { slug = @Model.ElementAt(k).Slug })">@Model.ElementAt(k).Title</a></h3>
                 <span class="date">@Html.Raw(@Model.ElementAt(k).Created.DateTime.ToLongDateString())</span>
@@ -142,3 +114,22 @@
 
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, query = ViewBag.Query }))
+
+@section scripts{
+    <script>
+        //$('form').submit(function () {
+        //    var input = $('#searchString').val();
+        //    if (input == '') {
+        //        $('#searchString').val('empty');
+        //    }
+        //})
+        //$('searchBtn').click(function () {
+        //    event.preventDefault();
+        //        var input = $('#searchString').val();
+        //        if (input == '') {
+        //            $('#searchString').val('empty');
+        //        }
+        //        $("#searchString").submit();
+        //})
+    </script>
+}
