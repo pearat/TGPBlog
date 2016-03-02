@@ -54,7 +54,7 @@
                         <form class="search-widget" action="@Url.Action("Index","Posts")">
                             <input type="search" class="form-control" placeholder="Search..." 
                                    value="@ViewBag.Query" name="query" style="max-width:200px">
-                            <button type="button" typeof="submit">
+                            <button type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
 
@@ -109,10 +109,26 @@
 
     <script src="~/Scripts/js/jquery.dotdotdot.min.js"></script>
     <script src="~/Scripts/js/invokeDotDotDot.js"></script>
+    @Scripts.Render("~/bundles/revolution")
     @RenderSection("scripts", required: false)
     ---
-    @Scripts.Render("~/bundles/revolution")
-
+   
+    <script>
+        //$('form').submit(function () {
+        //    var input = $('#searchString').val();
+        //    if (input == '') {
+        //        $('#searchString').val('empty');
+        //    }
+        //})
+        //$('searchBtn').click(function () {
+        //    event.preventDefault();
+        //        var input = $('#searchString').val();
+        //        if (input == '') {
+        //            $('#searchString').val('empty');
+        //        }
+        //        $("#searchString").submit();
+        //})
+    </script>
 </body>
 </html>
 
