@@ -446,6 +446,7 @@
     <Content Include="img\about\StackOverflow.png" />
     <Content Include="img\AustraliaTourism.jpg" />
     <Content Include="img\blog\1091596__neon-fractal-1024x768-jpg_p.jpg" />
+    <Content Include="img\blog\almost-finish.jpg" />
     <Content Include="img\blog\ASPnetCSharpTSQL.png" />
     <Content Include="img\blog\australian-immigration-settlement-map.jpg" />
     <Content Include="img\blog\cartoon-sport-cars_23-2147517773.jpg" />
@@ -457,6 +458,7 @@
     <Content Include="img\blog\Dilbert3.png" />
     <Content Include="img\blog\djokovic-murray.jpg" />
     <Content Include="img\blog\Do-men-or-women-make-the-best-landlords.jpg" />
+    <Content Include="img\blog\fullsteamahead.jpg" />
     <Content Include="img\blog\grunge-pink-blue.jpg" />
     <Content Include="img\blog\HardWorkTim.png" />
     <Content Include="img\blog\Homer-Bart-brainless.gif" />
@@ -476,6 +478,7 @@
     <Content Include="img\blog\red-neck.gif" />
     <Content Include="img\blog\Reebok_x-fit.jpg" />
     <Content Include="img\blog\roger-federer-ap-m.jpg" />
+    <Content Include="img\blog\Sharapova.jpg" />
     <Content Include="img\blog\skinny_dipping_girls.jpg" />
     <Content Include="img\blog\Tectonic-pun.jpg" />
     <Content Include="img\blog\Trend-color-neon.jpg" />
